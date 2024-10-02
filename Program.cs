@@ -1,4 +1,6 @@
 using api.src.Data;
+using api.src.Interfaces;
+using api.src.Repositorie;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+builder.Services.AddScoped<IUserInterface, UserRepository>();
 
 var app = builder.Build();
 
@@ -28,9 +31,6 @@ using (var scope = app.Services.CreateScope())
     var context = services.GetRequiredService<DataContext>();
     await context.Database.MigrateAsync();
     await Seeder.Seed(context);
-}
-{
-    
 }
 
 app.UseHttpsRedirection();
