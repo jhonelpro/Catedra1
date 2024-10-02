@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using api.src.Data;
 using api.src.DTOs;
 using api.src.Interfaces;
+using api.src.Mappers;
 using api.src.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
@@ -37,14 +38,29 @@ namespace api.src.Repositorie
             return await _context.Users.AnyAsync(x => x.Rut == rut);
         }
 
-        public Task<List<UserDto>> GetUser()
+        public async Task<List<UserDto>> GetUser()
         {
-            throw new NotImplementedException();
+            return await _context.Users.Select(u => u.ToUserDto()).ToListAsync();
         }
 
-        public Task<User?> UpdateUser(int id, UpdateUserDto updateUserDto)
+        public async Task<User?> UpdateUser(int id, UpdateUserDto updateUserDto)
         {
-            throw new NotImplementedException();
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.Rut = updateUserDto.Rut;
+            user.Name = updateUserDto.Name;
+            user.Email = updateUserDto.Email;
+            user.Gender = updateUserDto.Gender;
+            user.DateOfBirth = updateUserDto.DateOfBirth;
+
+            await _context.SaveChangesAsync();
+
+            return user;
         }
     }
 }

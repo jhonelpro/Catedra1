@@ -39,7 +39,38 @@ namespace api.src.Controllers
             }
 
             var newUser = await _userRepository.CreateUser(_user);
-            return TypedResults.Ok(newUser);
+            return TypedResults.Ok(newUser.ToUserDto());
+        }
+
+        [HttpGet]
+        public async Task<IResult> GetUser()
+        {
+            var users = await _userRepository.GetUser();
+
+            if (!ModelState.IsValid)
+            {
+                return TypedResults.BadRequest(ModelState);
+            }
+            
+            return TypedResults.Ok(users);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IResult> UpdateUser(int id, [FromBody] UpdateUserDto user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return TypedResults.BadRequest(ModelState);
+            }
+
+            var updatedUser = await _userRepository.UpdateUser(id, user);
+
+            if (updatedUser == null)
+            {
+                return TypedResults.NotFound();
+            }
+
+            return TypedResults.Ok(updatedUser.ToUserDto());
         }
     }
 }
