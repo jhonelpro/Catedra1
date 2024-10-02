@@ -72,5 +72,18 @@ namespace api.src.Controllers
 
             return TypedResults.Ok(updatedUser.ToUserDto());
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IResult> DeleteUser(int id)
+        {
+            var deletedUser = await _userRepository.DeleteUser(id);
+
+            if (deletedUser == null)
+            {
+                return TypedResults.NotFound();
+            }
+
+            return TypedResults.Ok(deletedUser.ToUserDto());
+        }
     }
 }

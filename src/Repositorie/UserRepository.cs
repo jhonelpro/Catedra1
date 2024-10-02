@@ -28,9 +28,18 @@ namespace api.src.Repositorie
             return user;
         }
 
-        public Task<User?> DeleteUser(int id)
+        public async Task<User?> DeleteUser(int id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+
+            if (user == null)
+            {
+                return null;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+            return user;
         }
 
         public async Task<bool> existRut(string rut)
