@@ -69,6 +69,11 @@ namespace api.src.Controllers
                 return TypedResults.BadRequest(ModelState);
             }
 
+            if (user.DateOfBirth >= DateTime.Today)
+            {
+                return TypedResults.BadRequest("La fecha de nacimiento debe ser menor a la fecha actual.");
+            }
+
             var updatedUser = await _userRepository.UpdateUser(id, user);
 
             if (updatedUser == null)
