@@ -43,9 +43,9 @@ namespace api.src.Controllers
         }
 
         [HttpGet]
-        public async Task<IResult> GetUser()
+        public async Task<IResult> GetUser([FromQuery] string? gender)
         {
-            var users = await _userRepository.GetUser();
+            var users = await _userRepository.GetUser(gender);
 
             if (!ModelState.IsValid)
             {
@@ -76,6 +76,11 @@ namespace api.src.Controllers
         [HttpDelete("{id}")]
         public async Task<IResult> DeleteUser(int id)
         {
+            if (!ModelState.IsValid)
+            {
+                return TypedResults.BadRequest(ModelState);
+            }
+
             var deletedUser = await _userRepository.DeleteUser(id);
 
             if (deletedUser == null)

@@ -47,9 +47,13 @@ namespace api.src.Repositorie
             return await _context.Users.AnyAsync(x => x.Rut == rut);
         }
 
-        public async Task<List<UserDto>> GetUser()
+        public async Task<List<UserDto>> GetUser(string gender)
         {
-            return await _context.Users.Select(u => u.ToUserDto()).ToListAsync();
+            if (string.IsNullOrEmpty(gender))
+            {
+                return await _context.Users.Select(u => u.ToUserDto()).ToListAsync();
+            }
+            return await _context.Users.Where(u => u.Gender == gender).Select(u => u.ToUserDto()).ToListAsync();
         }
 
         public async Task<User?> UpdateUser(int id, UpdateUserDto updateUserDto)
