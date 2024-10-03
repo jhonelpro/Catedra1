@@ -29,6 +29,12 @@ namespace api.src.Controllers
                 return TypedResults.BadRequest(ModelState);
             }
 
+            // Validar que la fecha de nacimiento sea menor a la fecha actual
+            if (user.DateOfBirth >= DateTime.Today)
+            {
+                return TypedResults.BadRequest("La fecha de nacimiento debe ser menor a la fecha actual.");
+            }
+
             var _user = user.ToProductFromCreateDto();
 
             bool existRut = await _userRepository.existRut(_user.Rut);
