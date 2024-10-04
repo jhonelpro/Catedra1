@@ -21,6 +21,8 @@ namespace api.src.Models
         [Required]
         [RegularExpression(@"masculino|femenino|otro|prefiero no decirlo")]
         public string Gender { get; set; } = string.Empty;
-        public DateTime DateOfBirth { get; set; }
+        [Required]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateOnly DateOfBirth { get; set; }
     }
 }

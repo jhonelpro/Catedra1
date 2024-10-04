@@ -11,8 +11,8 @@ using api.src.Data;
 namespace api.src.Data.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241002231049_FirstMigration")]
-    partial class FirstMigration
+    [Migration("20241004174755_SecondMigration")]
+    partial class SecondMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,7 +26,7 @@ namespace api.src.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateOnly>("DateOfBirth")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")

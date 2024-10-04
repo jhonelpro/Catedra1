@@ -26,7 +26,7 @@ namespace api.src.Data
                     Name = $"User {i}",
                     Email = $"User{i}@gmail.com",
                     Gender = Genders[random.Next(0, Genders.Count)],
-                    DateOfBirth = DateTime.Now.AddYears(-random.Next(18, 60))
+                    DateOfBirth = DateOnly.FromDateTime(DateTime.Now.AddYears(-random.Next(18, 60)))
                 };
 
                 await context.Users.AddAsync(user);

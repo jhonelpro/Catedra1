@@ -30,7 +30,7 @@ namespace api.src.Controllers
             }
 
             // Validar que la fecha de nacimiento sea menor a la fecha actual
-            if (user.DateOfBirth >= DateTime.Today)
+            if (user.DateOfBirth >= DateOnly.FromDateTime(DateTime.Today))
             {
                 return TypedResults.BadRequest("La fecha de nacimiento debe ser menor a la fecha actual.");
             }
@@ -69,7 +69,7 @@ namespace api.src.Controllers
                 return TypedResults.BadRequest(ModelState);
             }
 
-            if (user.DateOfBirth >= DateTime.Today)
+            if (user.DateOfBirth >= DateOnly.FromDateTime(DateTime.Today))
             {
                 return TypedResults.BadRequest("La fecha de nacimiento debe ser menor a la fecha actual.");
             }
