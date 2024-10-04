@@ -26,7 +26,7 @@ namespace api.src.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return TypedResults.BadRequest(ModelState);
+                return TypedResults.BadRequest("Alguna validación no fue cumplida.");
             }
 
             // Validar que la fecha de nacimiento sea menor a la fecha actual
@@ -45,7 +45,7 @@ namespace api.src.Controllers
             }
 
             var newUser = await _userRepository.CreateUser(_user);
-            return TypedResults.Ok(newUser.ToUserDto());
+            return TypedResults.Created("Usuario creado exitosamente.", newUser.ToUserDto());
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace api.src.Controllers
 
             if (!ModelState.IsValid)
             {
-                return TypedResults.BadRequest(ModelState);
+                return TypedResults.BadRequest("Algún filtro es inválido.");
             }
             
             return TypedResults.Ok(users);
@@ -66,7 +66,7 @@ namespace api.src.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return TypedResults.BadRequest(ModelState);
+                return TypedResults.BadRequest("Alguna validación no fue cumplida.");
             }
 
             if (user.DateOfBirth >= DateOnly.FromDateTime(DateTime.Today))
@@ -78,7 +78,7 @@ namespace api.src.Controllers
 
             if (updatedUser == null)
             {
-                return TypedResults.NotFound();
+                return TypedResults.NotFound("Usuario no encontrado.");
             }
 
             return TypedResults.Ok(updatedUser.ToUserDto());
@@ -89,14 +89,14 @@ namespace api.src.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return TypedResults.BadRequest(ModelState);
+                return TypedResults.BadRequest("Alguna validación no fue cumplida.");
             }
 
             var deletedUser = await _userRepository.DeleteUser(id);
 
             if (deletedUser == null)
             {
-                return TypedResults.NotFound();
+                return TypedResults.NotFound("Usuario no encontrado.");
             }
 
             return TypedResults.Ok(deletedUser.ToUserDto());

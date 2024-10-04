@@ -45,7 +45,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"rut\": \"00000000-0\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"masculino\",\r\n  \"dateOfBirth\": \"2010-10-02\"\r\n}",
+					"raw": "{\r\n  \"rut\": \"00011110-0\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"masculino\",\r\n  \"dateOfBirth\": \"2010-10-02\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -73,7 +73,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"rut\": \"10.100.100-1\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"prefiero no decirlo\",\r\n  \"dateOfBirth\": \"2003-12-31\"\r\n}",
+					"raw": "{\r\n  \"rut\": \"10100100-1\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"prefiero no decirlo\",\r\n  \"dateOfBirth\": \"2003-12-31\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,7 +81,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:5287/user/11",
+					"raw": "http://localhost:5287/user/10",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -89,7 +89,7 @@
 					"port": "5287",
 					"path": [
 						"user",
-						"11"
+						"10"
 					]
 				}
 			},
@@ -101,7 +101,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:5287/user/11",
+					"raw": "http://localhost:5287/user/14",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -109,7 +109,7 @@
 					"port": "5287",
 					"path": [
 						"user",
-						"11"
+						"14"
 					]
 				}
 			},
