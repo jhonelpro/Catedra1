@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "11472331-1038-4603-b156-974b0734f7fe",
+		"name": "Prueba",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34959430",
+		"_collection_link": "https://ingenieros-ucn.postman.co/workspace/Prueba~9fdb0863-209e-41f2-b0c0-fdee32965541/collection/34959430-11472331-1038-4603-b156-974b0734f7fe?action=share&source=collection_link&creator=34959430"
+	},
+	"item": [
+		{
+			"name": "GetUsers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5287/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PostUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"rut\": \"00000000-0\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"masculino\",\r\n  \"dateOfBirth\": \"2010-10-02\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5287/user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PutUser",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"rut\": \"10.100.100-1\",\r\n  \"name\": \"jhon\",\r\n  \"email\": \"jhon@example.com\",\r\n  \"gender\": \"prefiero no decirlo\",\r\n  \"dateOfBirth\": \"2003-12-31\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5287/user/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteUser",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5287/user/11",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByGender",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5287/user?gender=masculino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "masculino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByASC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5287/user?sort=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetByDESC",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5287/user?sort=desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetBy desc and gender",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5287/user?gender=masculino&sort=desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5287",
+					"path": [
+						"user"
+					],
+					"query": [
+						{
+							"key": "gender",
+							"value": "masculino"
+						},
+						{
+							"key": "sort",
+							"value": "desc"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
