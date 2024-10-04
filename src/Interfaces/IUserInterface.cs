@@ -11,7 +11,7 @@ namespace api.src.Interfaces
     {
         Task<bool> existRut(string rut);
         Task<User> CreateUser(User user);
-        Task<List<UserDto>> GetUser(string gender);
+        Task<List<UserDto>> GetUser(string gender, string sort);
         Task<User?> UpdateUser(int id, UpdateUserDto updateUserDto);
         Task<User?> DeleteUser(int id);
     }

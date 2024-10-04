@@ -49,9 +49,9 @@ namespace api.src.Controllers
         }
 
         [HttpGet]
-        public async Task<IResult> GetUser([FromQuery] string? gender)
+        public async Task<IResult> GetUser([FromQuery] string? gender, [FromQuery] string? sort)
         {
-            var users = await _userRepository.GetUser(gender);
+            var users = await _userRepository.GetUser(gender,sort);
 
             if (!ModelState.IsValid)
             {

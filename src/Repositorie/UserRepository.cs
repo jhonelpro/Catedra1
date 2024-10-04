@@ -26,6 +26,8 @@ namespace api.src.Repositorie
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
+
+
         }
 
         public async Task<User?> DeleteUser(int id)
@@ -47,13 +49,29 @@ namespace api.src.Repositorie
             return await _context.Users.AnyAsync(x => x.Rut == rut);
         }
 
-        public async Task<List<UserDto>> GetUser(string gender)
+        public async Task<List<UserDto>> GetUser(string gender, string sort)
         {
-            if (string.IsNullOrEmpty(gender))
+            // Query base
+            var query = _context.Users.AsQueryable();
+
+            // Filtrar por gender si se proporciona
+            if (!string.IsNullOrEmpty(gender))
             {
-                return await _context.Users.Select(u => u.ToUserDto()).ToListAsync();
+                query = query.Where(u => u.Gender == gender);
             }
-            return await _context.Users.Where(u => u.Gender == gender).Select(u => u.ToUserDto()).ToListAsync();
+
+            // Aplicar ordenación si sort no es nulo
+            if (sort == "desc")
+            {
+                query = query.OrderByDescending(u => u.Name);
+            }
+            else if (sort == "asc")
+            {
+                query = query.OrderBy(u => u.Name); // Ascendente si se especifica "asc"
+            }
+
+            // Proyectar a UserDto y devolver los resultados
+            return await query.Select(u => u.ToUserDto()).ToListAsync();
         }
 
         public async Task<User?> UpdateUser(int id, UpdateUserDto updateUserDto)
